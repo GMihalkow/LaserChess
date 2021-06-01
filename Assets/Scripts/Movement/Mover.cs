@@ -5,6 +5,8 @@ namespace LaserChess.Movement
 {
     public class Mover : MonoBehaviour
     {
+        [SerializeField] int _id;
+
         private GridMap _grid;
         private int _currentCol;
         private int _currentRow;
@@ -20,9 +22,15 @@ namespace LaserChess.Movement
 
         public void Move(int row, int col)
         {
-            this.transform.position = this._grid.GetPos(row, col);
+            var prevCol = this._currentCol;
+            var prevRow = this._currentRow;
+
+            this.transform.position = this._grid.GetPos(row, col, this._id);
+
             this._currentCol = col;
             this._currentRow = row;
+
+            this._grid.ClearPos(prevRow, prevCol);
         }
     }
 }

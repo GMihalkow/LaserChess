@@ -1,4 +1,5 @@
-﻿using LaserChess.Movement;
+﻿using LaserChess.Core;
+using LaserChess.Movement;
 using LaserChess.Pieces.Contracts;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace LaserChess.Pieces
         [SerializeField] protected int _initialRow;
         [SerializeField] protected GameObject _markerPrefab;
 
+        protected GridMap _grid;
         protected GameObject _markersContainer;
         protected Mover _mover;
         protected bool _isSelected;
@@ -22,6 +24,7 @@ namespace LaserChess.Pieces
 
         protected virtual void Awake()
         {
+            this._grid = GameObject.Find("GridMap").GetComponent<GridMap>();
             this._markersContainer = this.transform.parent.Find("MarkersContainer").gameObject;
             this._mover = this.GetComponent<Mover>();
         }
