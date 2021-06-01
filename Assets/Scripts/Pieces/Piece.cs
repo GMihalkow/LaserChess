@@ -36,6 +36,9 @@ namespace LaserChess.Pieces
 
         public abstract void HighlightAvailableSpots();
 
-        public abstract void Move(int row, int col);
+        public virtual void Move(int row, int col)
+        {
+            this._mover.Move(row, col);
+        }
     }
 }

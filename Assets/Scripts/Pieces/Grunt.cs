@@ -27,10 +27,5 @@ namespace LaserChess.Pieces
                 marker.GetComponent<Mover>().Move(this._mover.CurrentRow, col);
             }
         }
-
-        public override void Move(int row, int col)
-        {
-            this._mover.Move(row, col);
-        }
     }
 }
