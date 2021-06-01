@@ -30,6 +30,8 @@ namespace LaserChess.Movement
             this._currentCol = col;
             this._currentRow = row;
 
+            if ((prevCol == col && prevRow == row) || this.CompareTag("Marker")) return;
+
             this._grid.ClearPos(prevRow, prevCol);
         }
     }
