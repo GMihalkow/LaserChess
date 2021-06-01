@@ -74,6 +74,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 34653580701773571, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: _hitPoints
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3747889143166589463, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
       propertyPath: m_Name
@@ -83,6 +88,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PlayerPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855803376363067694, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: _attackDamage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7917884870483100993, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
