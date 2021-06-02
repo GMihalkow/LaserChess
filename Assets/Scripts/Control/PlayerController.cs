@@ -32,12 +32,12 @@ namespace LaserChess.Control
 
         private void HandlePieceInteraction(RaycastHit2D hitInfo)
         {
-            var piece = hitInfo.collider.gameObject.GetComponent<Piece>();
+            var piece = hitInfo.collider.gameObject.GetComponent<PlayerPiece>();
             if (piece == null) return;
 
             if (!piece.IsSelected)
             {
-                this.ClearHighlights();
+                this.DestroyMarkers();
                 this.DeselectAllPieces();
                 piece.HighlightAvailableSpots();
             }
@@ -53,11 +53,11 @@ namespace LaserChess.Control
 
             selectedPiece.Move(markerMover.CurrentRow, markerMover.CurrentCol);
 
-            this.ClearHighlights();
+            this.DestroyMarkers();
             this.DeselectAllPieces();
         }
 
-        private void ClearHighlights()
+        private void DestroyMarkers()
         {
             foreach (Transform child in this._playerPieces.transform.Find("MarkersContainer"))
             {
@@ -69,18 +69,18 @@ namespace LaserChess.Control
         {
             foreach (Transform child in this._playerPieces.transform)
             {
-                var piece = child.GetComponent<Piece>();
+                var piece = child.GetComponent<PlayerPiece>();
                 if (piece == null) continue;
 
                 piece.IsSelected = false;
             }
         }
 
-        private Piece FindSelectedPiece()
+        private PlayerPiece FindSelectedPiece()
         {
             foreach (Transform child in this._playerPieces.transform)
             {
-                var piece = child.GetComponent<Piece>();
+                var piece = child.GetComponent<PlayerPiece>();
                 if (piece?.IsSelected != true) continue;
 
                 return piece;

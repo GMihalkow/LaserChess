@@ -1,6 +1,6 @@
 ﻿namespace LaserChess.Pieces.Contracts
 {
-    public interface IPiece
+    public interface IPlayerPiece
     {
         void HighlightAvailableSpots();
 

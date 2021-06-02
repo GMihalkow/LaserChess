@@ -8,8 +8,8 @@ namespace LaserChess.Movement
         [SerializeField] int _id;
 
         private GridMap _grid;
-        private int _currentCol;
-        private int _currentRow;
+        private int _currentCol = -1;
+        private int _currentRow = -1;
 
         public int CurrentCol => this._currentCol;
 
@@ -30,7 +30,7 @@ namespace LaserChess.Movement
             this._currentCol = col;
             this._currentRow = row;
 
-            if ((prevCol == col && prevRow == row) || this.CompareTag("Marker")) return;
+            if ((prevCol == col && prevRow == row) || (prevRow < 0 || prevCol < 0) || this.CompareTag("Marker")) return;
 
             this._grid.ClearPos(prevRow, prevCol);
         }

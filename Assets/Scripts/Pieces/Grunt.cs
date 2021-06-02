@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LaserChess.Pieces
 {
-    public class Grunt : Piece
+    public class Grunt : PlayerPiece
     {
         public override void HighlightAvailableSpots()
         {
