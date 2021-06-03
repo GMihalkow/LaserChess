@@ -91,6 +91,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerPiece
       objectReference: {fileID: 0}
+    - target: {fileID: 5855803376363067694, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 5702177054620751022, guid: a3b70815525079c408df261aa1997e3e,
+        type: 3}
     - target: {fileID: 6822123150736798202, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
       propertyPath: m_RootOrder
