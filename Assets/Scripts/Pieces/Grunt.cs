@@ -7,6 +7,8 @@ namespace LaserChess.Pieces
     {
         public override void HighlightCombatSpots()
         {
+            this._isSelected = true;
+
             for (int row = this._mover.CurrentRow - 1; row <= this._mover.CurrentRow + 1; row+=2)
             {
                 if (row < 0 || row > this._grid.Rows - 1) continue;

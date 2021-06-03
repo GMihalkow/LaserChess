@@ -7,6 +7,8 @@ namespace LaserChess.Pieces
     {
         public override void HighlightCombatSpots()
         {
+            this._isSelected = true;
+
             var startCol = Mathf.Max(0, this._mover.CurrentCol - 4);
             var endCol = Mathf.Min(this._grid.Cols - 1, this._mover.CurrentCol + 4);
 
