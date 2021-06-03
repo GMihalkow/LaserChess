@@ -6,40 +6,47 @@ namespace LaserChess.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        private GameObject _playerPieces;
+        private GameObject _pieces;
 
         private void Awake()
         {
-            this._playerPieces = GameObject.Find("PlayerPieces");
+            this._pieces = GameObject.Find("PlayerPieces");
         }
 
         private void Update()
         {
+            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1)) return;
+
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             var hitInfo = Physics2D.Raycast(ray.origin, ray.direction, 100f);
 
-            if (hitInfo == default || !Input.GetMouseButtonDown(0)) return;
+            if (hitInfo == default) return;
 
-            if (hitInfo.collider.CompareTag("PlayerPiece"))
+            if (hitInfo.collider.CompareTag("PlayerPiece") && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
             {
-                this.HandlePieceInteraction(hitInfo);
+                this.DisplayMarkers(hitInfo);
             }
-            else if (hitInfo.collider.CompareTag("Marker"))
+            else if (hitInfo.collider.CompareTag("PositionMarker") && Input.GetMouseButtonDown(0))
             {
                 this.HandlePieceMovement(hitInfo);
             }
         }
 
-        private void HandlePieceInteraction(RaycastHit2D hitInfo)
+        private void DisplayMarkers(RaycastHit2D hitInfo)
         {
             var piece = hitInfo.collider.gameObject.GetComponent<PlayerPiece>();
             if (piece == null) return;
 
-            if (!piece.IsSelected)
+            this.DestroyMarkers();
+            this.DeselectAllPieces();
+
+            if (Input.GetMouseButtonDown(0))
             {
-                this.DestroyMarkers();
-                this.DeselectAllPieces();
-                piece.HighlightAvailableSpots();
+                piece.HighlightMovementSpots();
+            }
+            else
+            {
+                piece.HighlightCombatSpots();
             }
         }
 
@@ -59,7 +66,7 @@ namespace LaserChess.Control
 
         private void DestroyMarkers()
         {
-            foreach (Transform child in this._playerPieces.transform.Find("MarkersContainer"))
+            foreach (Transform child in this._pieces.transform.Find("MarkersContainer"))
             {
                 GameObject.Destroy(child.gameObject);
             }
@@ -67,7 +74,7 @@ namespace LaserChess.Control
 
         private void DeselectAllPieces()
         {
-            foreach (Transform child in this._playerPieces.transform)
+            foreach (Transform child in this._pieces.transform)
             {
                 var piece = child.GetComponent<PlayerPiece>();
                 if (piece == null) continue;
@@ -78,7 +85,7 @@ namespace LaserChess.Control
 
         private PlayerPiece FindSelectedPiece()
         {
-            foreach (Transform child in this._playerPieces.transform)
+            foreach (Transform child in this._pieces.transform)
             {
                 var piece = child.GetComponent<PlayerPiece>();
                 if (piece?.IsSelected != true) continue;

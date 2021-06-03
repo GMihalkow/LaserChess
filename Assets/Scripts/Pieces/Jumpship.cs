@@ -5,7 +5,32 @@ namespace LaserChess.Pieces
 {
     public class Jumpship : PlayerPiece
     {
-        public override void HighlightAvailableSpots()
+        public override void HighlightCombatSpots()
+        {
+            var startCol = Mathf.Max(0, this._mover.CurrentCol - 4);
+            var endCol = Mathf.Min(this._grid.Cols - 1, this._mover.CurrentCol + 4);
+
+            var startRow = Mathf.Max(0, this._mover.CurrentRow - 4);
+            var endRow = Mathf.Min(this._grid.Rows - 1, this._mover.CurrentRow + 4);
+
+            for (int row = startRow; row <= endRow; row++)
+            {
+                if (this._mover.CurrentRow == row) continue;
+
+                var marker = GameObject.Instantiate(this._combatMarkerPrefab, this._markersContainer.transform);
+                marker.GetComponent<Mover>().Move(row, this._mover.CurrentCol, false);
+            }
+
+            for (int col = startCol; col <= endCol; col++)
+            {
+                if (this._mover.CurrentCol == col) continue;
+
+                var marker = GameObject.Instantiate(this._combatMarkerPrefab, this._markersContainer.transform);
+                marker.GetComponent<Mover>().Move(this._mover.CurrentRow, col, false);
+            }
+        }
+
+        public override void HighlightMovementSpots()
         {
             // TODO [GM]: extract code? (in Grunt too)
             if (this._isSelected) return;
@@ -19,13 +44,13 @@ namespace LaserChess.Pieces
 
                 if (this._mover.CurrentCol - 1 >= 0 && this._grid.IsPosEmpty(row, this._mover.CurrentCol - 1))
                 {
-                    var marker = GameObject.Instantiate(this._markerPrefab, this._markersContainer.transform);
+                    var marker = GameObject.Instantiate(this._movementMarkerPrefab, this._markersContainer.transform);
                     marker.GetComponent<Mover>().Move(row, this._mover.CurrentCol - 1);
                 }
 
                 if (this._mover.CurrentCol + 1 < this._grid.Cols && this._grid.IsPosEmpty(row, this._mover.CurrentCol + 1))
                 {
-                    var marker = GameObject.Instantiate(this._markerPrefab, this._markersContainer.transform);
+                    var marker = GameObject.Instantiate(this._movementMarkerPrefab, this._markersContainer.transform);
                     marker.GetComponent<Mover>().Move(row, this._mover.CurrentCol + 1);
                 }
             }
@@ -37,13 +62,13 @@ namespace LaserChess.Pieces
 
                 if (this._mover.CurrentRow - 1 >= 0 && this._grid.IsPosEmpty(this._mover.CurrentRow - 1, col))
                 {
-                    var marker = GameObject.Instantiate(this._markerPrefab, this._markersContainer.transform);
+                    var marker = GameObject.Instantiate(this._movementMarkerPrefab, this._markersContainer.transform);
                     marker.GetComponent<Mover>().Move(this._mover.CurrentRow - 1, col);
                 }
 
                 if (this._mover.CurrentRow + 1 < this._grid.Rows && this._grid.IsPosEmpty(this._mover.CurrentRow + 1, col))
                 {
-                    var marker = GameObject.Instantiate(this._markerPrefab, this._markersContainer.transform);
+                    var marker = GameObject.Instantiate(this._movementMarkerPrefab, this._markersContainer.transform);
                     marker.GetComponent<Mover>().Move(this._mover.CurrentRow + 1, col);
                 }
             }

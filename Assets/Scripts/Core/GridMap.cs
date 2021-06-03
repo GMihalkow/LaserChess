@@ -21,14 +21,17 @@ namespace LaserChess.Core
             this._map = new int[this._rows, this._cols];
         }
 
-        public Vector2 GetPos(int row, int col, int id)
+        public Vector2 GetPos(int row, int col, int id, bool setId = true)
         {
             this.CheckBounds(row, col);
 
             var x = (this._xCellSize * (float)row) - (this._xCellSize / 2f);
             var y = (this._yCellSize * (float)col) - (this._yCellSize / 2f);
 
-            this._map[row, col] = id;
+            if (setId)
+            {
+                this._map[row, col] = id;
+            }
 
             return new Vector2(x, y);
         }

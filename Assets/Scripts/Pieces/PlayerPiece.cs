@@ -6,7 +6,8 @@ namespace LaserChess.Pieces
 {
     public abstract class PlayerPiece : BasePiece, IPlayerPiece
     {
-        [SerializeField] protected GameObject _markerPrefab;
+        [SerializeField] protected GameObject _movementMarkerPrefab;
+        [SerializeField] protected GameObject _combatMarkerPrefab;
 
         protected GridMap _grid;
         protected GameObject _markersContainer;
@@ -26,8 +27,10 @@ namespace LaserChess.Pieces
             this._markersContainer = this.transform.parent.Find("MarkersContainer").gameObject;
         }
 
-        public abstract void HighlightAvailableSpots();
+        public abstract void HighlightMovementSpots();
 
+        public abstract void HighlightCombatSpots();
+     
         public virtual void Move(int row, int col)
         {
             this._mover.Move(row, col);

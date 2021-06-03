@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialCol: 0
   _initialRow: 0
-  _markerPrefab: {fileID: 3865331597580108366, guid: 88e7cc492022a0c44a4a74bcae836306,
+  _movementMarkerPrefab: {fileID: 4875065343152697349, guid: 2bc95267116dcb646bcee70eff6ceb7e,
+    type: 3}
+  _combatMarkerPrefab: {fileID: 2693768021007161584, guid: 84e0e643bd8e88d4fa75d7f81d992448,
     type: 3}
 --- !u!212 &8991699590379033823
 SpriteRenderer:

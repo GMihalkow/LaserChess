@@ -5,7 +5,26 @@ namespace LaserChess.Pieces
 {
     public class Tank : PlayerPiece
     {
-        public override void HighlightAvailableSpots()
+        public override void HighlightCombatSpots()
+        {
+            for (int row = 0; row < this._grid.Rows; row++)
+            {
+                if (this._mover.CurrentRow == row) continue;
+
+                var marker = GameObject.Instantiate(this._combatMarkerPrefab, this._markersContainer.transform);
+                marker.GetComponent<Mover>().Move(row, this._mover.CurrentCol, false);
+            }
+
+            for (int col = 0; col < this._grid.Cols; col++)
+            {
+                if (this._mover.CurrentCol == col) continue;
+
+                var marker = GameObject.Instantiate(this._combatMarkerPrefab, this._markersContainer.transform);
+                marker.GetComponent<Mover>().Move(this._mover.CurrentRow, col, false);
+            }
+        }
+
+        public override void HighlightMovementSpots()
         {
             if (this._isSelected) return;
 
@@ -25,7 +44,7 @@ namespace LaserChess.Pieces
 
                     if ((col == this._mover.CurrentCol && row == this._mover.CurrentRow) || !isPosEmpty) continue;
 
-                    var marker = GameObject.Instantiate(this._markerPrefab, this._markersContainer.transform);
+                    var marker = GameObject.Instantiate(this._movementMarkerPrefab, this._markersContainer.transform);
                     marker.GetComponent<Mover>().Move(row, col);
                 }
             }

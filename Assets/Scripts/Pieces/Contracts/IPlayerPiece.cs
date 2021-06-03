@@ -2,7 +2,9 @@
 {
     public interface IPlayerPiece
     {
-        void HighlightAvailableSpots();
+        void HighlightMovementSpots();
+
+        void HighlightCombatSpots();
 
         void Move(int row, int col);
     }

@@ -6,10 +6,12 @@ namespace LaserChess.Combat
     public class Fighter : MonoBehaviour
     {
         [SerializeField] float _attackDamage = 1f;
+        [SerializeField] GameObject _projectilePrefab;
 
         public void Attack(CombatTarget target)
         {
-            // TODO [GM]: shoot laser beem
+            var projectile = GameObject.Instantiate(this._projectilePrefab, this.transform.position, Quaternion.identity);
+            projectile.GetComponent<Projectile>().SetTarget(target.transform.position);
 
             var targetHealth = target.GetComponent<Health>();
             targetHealth.TakeDamage(this._attackDamage);
