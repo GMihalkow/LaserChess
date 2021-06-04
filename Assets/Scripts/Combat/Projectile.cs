@@ -4,7 +4,10 @@ namespace LaserChess.Combat
 {
     public class Projectile : MonoBehaviour
     {
+        private float _attackDamage;
         private Vector2 _target;
+
+        public float AttackDamage => this._attackDamage;
 
         private void Update()
         {
@@ -13,8 +16,10 @@ namespace LaserChess.Combat
             this.transform.Translate(Vector2.right * Time.deltaTime);
         }
 
-        public void SetTarget(Vector2 target)
+        public void SetConfig(Vector2 target, float attackDamage)
         {
+            this._attackDamage = attackDamage;
+
             var screenPos = Camera.main.WorldToScreenPoint(target);
             this.LookAt(screenPos);
 

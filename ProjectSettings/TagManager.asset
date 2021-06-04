@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerPiece
-  - PlayerProjectile
   - PositionMarker
   - CombatMarker
+  - Marker
+  - AIPiece
   layers:
   - Default
   - TransparentFX

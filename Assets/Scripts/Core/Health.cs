@@ -19,7 +19,7 @@ namespace LaserChess.Core
 
             if (!Mathf.Approximately(this._currentHitPoints, 0)) return;
 
-            // TODO [GM]: Destroy
+            GameObject.Destroy(this.gameObject);
         }
     }
 }

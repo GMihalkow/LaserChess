@@ -10,7 +10,7 @@ namespace LaserChess.Combat
         public void Attack(Vector2 targetPos)
         {
             var projectile = GameObject.Instantiate(this._projectilePrefab, this.transform.position, Quaternion.identity);
-            projectile.GetComponent<Projectile>().SetTarget(targetPos);
+            projectile.GetComponent<Projectile>().SetConfig(targetPos, this._attackDamage);
         }
     }
 }
