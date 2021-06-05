@@ -1316,7 +1316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ace13ca72484a4cb26c7053f0dd095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 8
-  cols: 8
-  xCellSize: 0.65
-  yCellSize: 0.7
+  _rows: 8
+  _cols: 8
+  _xCellSize: 0.65
+  _yCellSize: 0.7
+  _playerPieceIds: 010000000200000003000000

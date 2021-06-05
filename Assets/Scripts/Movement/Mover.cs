@@ -25,7 +25,7 @@ namespace LaserChess.Movement
             var prevCol = this._currentCol;
             var prevRow = this._currentRow;
 
-            this.transform.position = this._grid.GetPos(row, col, this._id, setId);
+            this.transform.position = this._grid.GetPosWorldCoords(row, col, this._id, setId);
 
             this._currentCol = col;
             this._currentRow = row;

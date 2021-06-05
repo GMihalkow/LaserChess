@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace LaserChess.Core
@@ -9,6 +10,7 @@ namespace LaserChess.Core
         [SerializeField] int _cols = 8;
         [SerializeField] float _xCellSize = 0.65f;
         [SerializeField] float _yCellSize = 0.7f;
+        [SerializeField] int[] _playerPieceIds;
 
         private int[,] _map;
 
@@ -21,7 +23,7 @@ namespace LaserChess.Core
             this._map = new int[this._rows, this._cols];
         }
 
-        public Vector2 GetPos(int row, int col, int id, bool setId = true)
+        public Vector2 GetPosWorldCoords(int row, int col, int id, bool setId = true)
         {
             this.CheckBounds(row, col);
 
@@ -48,6 +50,13 @@ namespace LaserChess.Core
             this.CheckBounds(row, col);
 
             return this._map[row, col] == Constants.DEFAULT_CELL_ID;
+        }
+
+        public bool HasPlayerPieceOnPos(int row, int col)
+        {
+            this.CheckBounds(row, col);
+
+            return this._playerPieceIds.Contains(this._map[row, col]);
         }
 
         private void CheckBounds(int row, int col)
