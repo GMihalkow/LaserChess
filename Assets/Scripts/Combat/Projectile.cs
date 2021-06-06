@@ -6,6 +6,8 @@ namespace LaserChess.Combat
     {
         private float _attackDamage;
         private Vector2 _target;
+        private bool _destroyAtPos;
+        private float _destroyOffset;
 
         public float AttackDamage => this._attackDamage;
 
@@ -16,8 +18,22 @@ namespace LaserChess.Combat
             this.transform.Translate(Vector2.right * Time.deltaTime);
         }
 
-        public void SetConfig(Vector2 target, float attackDamage)
+        private void LateUpdate()
         {
+            if (!this._destroyAtPos) return;
+
+            var vector2Pos = new Vector2(this.transform.position.x, this.transform.position.y);
+            var distance = Vector2.Distance(this._target, vector2Pos);
+
+            if (this._target == default || distance > this._destroyOffset) return;
+
+            GameObject.Destroy(this.gameObject);
+        }
+
+        public void SetConfig(Vector2 target, float attackDamage, float destroyOffset, bool destroyAtPos = true)
+        {
+            this._destroyOffset = destroyOffset;
+            this._destroyAtPos = destroyAtPos;
             this._attackDamage = attackDamage;
 
             var screenPos = Camera.main.WorldToScreenPoint(target);

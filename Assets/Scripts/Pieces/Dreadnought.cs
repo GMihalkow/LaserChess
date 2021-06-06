@@ -106,7 +106,22 @@ namespace LaserChess.Pieces
 
         public override void Attack()
         {
-            throw new System.NotImplementedException();
+            var startRow = Mathf.Max(0, this._mover.CurrentRow - 1);
+            var startCol = Mathf.Max(0, this._mover.CurrentCol - 1);
+
+            var endRow = Mathf.Min(this._grid.Rows - 1, this._mover.CurrentRow + 1);
+            var endCol = Mathf.Min(this._grid.Cols - 1, this._mover.CurrentCol + 1);
+
+            for (int row = startRow; row <= endRow; row++)
+            {
+                for (int col = startCol; col <= endCol; col++)
+                {
+                    if (row == this._mover.CurrentRow && col == this._mover.CurrentCol) continue;
+
+                    var pos = this._grid.GetPosWorldCoords(row, col, setId: false);
+                    this._fighter.Attack(pos);
+                }
+            }
         }
     }
 }
