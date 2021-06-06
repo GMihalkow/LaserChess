@@ -39,6 +39,13 @@ namespace LaserChess.Core
             return new Vector2(x, y);
         }
 
+        public int GetIdOnPos(int row, int col)
+        {
+            this.CheckBounds(row, col);
+
+            return this._map[row, col];
+        }
+
         public void ClearPos(int row, int col)
         {
             this.CheckBounds(row, col);
