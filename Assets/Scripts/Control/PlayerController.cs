@@ -7,6 +7,7 @@ namespace LaserChess.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        private const float RAYCAST_MAX_DISTANCE = 100f;
         private GameObject _pieces;
 
         private void Awake()
@@ -19,7 +20,7 @@ namespace LaserChess.Control
             if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1)) return;
 
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            var hitInfo = Physics2D.Raycast(ray.origin, ray.direction, 100f);
+            var hitInfo = Physics2D.Raycast(ray.origin, ray.direction, RAYCAST_MAX_DISTANCE);
 
             if (hitInfo == default) return;
 
