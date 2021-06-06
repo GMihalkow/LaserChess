@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6338107739720228829
+--- !u!1001 &4497660313186548641
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -65,7 +65,12 @@ PrefabInstance:
     - target: {fileID: 5702177054620751022, guid: a3b70815525079c408df261aa1997e3e,
         type: 3}
       propertyPath: m_Name
-      value: PlayerProjectile
+      value: EnemyProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702177054620751022, guid: a3b70815525079c408df261aa1997e3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: AIPiece
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3b70815525079c408df261aa1997e3e, type: 3}

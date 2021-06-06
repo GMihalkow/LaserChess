@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace LaserChess.Core
             this._map = new int[this._rows, this._cols];
         }
 
-        public Vector2 GetPosWorldCoords(int row, int col, int id, bool setId = true)
+        public Vector2 GetPosWorldCoords(int row, int col, int id = 0, bool setId = true)
         {
             this.CheckBounds(row, col);
 
@@ -57,6 +58,23 @@ namespace LaserChess.Core
             this.CheckBounds(row, col);
 
             return this._playerPieceIds.Contains(this._map[row, col]);
+        }
+
+        public int[][] GetAllPiecesPositions()
+        {
+            var positions = new List<int[]>();
+
+            for (int row = 0; row < this._rows; row++)
+            {
+                for (int col = 0; col < this._cols; col++)
+                {
+                    if (this.IsPosEmpty(row, col)) continue;
+
+                    positions.Add(new int[] { row, col });
+                }
+            }
+
+            return positions.ToArray();
         }
 
         private void CheckBounds(int row, int col)

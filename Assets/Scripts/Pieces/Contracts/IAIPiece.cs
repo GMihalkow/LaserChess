@@ -2,6 +2,8 @@
 {
     public interface IAIPiece
     {
+        void Attack();
+
         void Move();
     }
 }

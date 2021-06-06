@@ -1,19 +1,9 @@
-﻿using LaserChess.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LaserChess.Pieces
 {
     public class Dreadnought : AIPiece
     {
-        private GridMap _grid;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            this._grid = GameObject.Find("GridMap").GetComponent<GridMap>();
-        }
-
         public override void Move()
         {
             var closestEnemyPos = this.FindClosestEnemy();
@@ -112,6 +102,11 @@ namespace LaserChess.Pieces
             }
 
             return null;
+        }
+
+        public override void Attack()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
