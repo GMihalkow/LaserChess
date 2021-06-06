@@ -8,16 +8,26 @@ namespace LaserChess.Control
     public class PlayerController : MonoBehaviour
     {
         private const float RAYCAST_MAX_DISTANCE = 100f;
+        private bool _isDisabled;
         private GameObject _pieces;
+
+        public bool isDisabled 
+        {
+            get => this._isDisabled;
+            set => this._isDisabled = value;
+        }
+
+        public int PiecesCount => this._pieces.transform.childCount;
 
         private void Awake()
         {
+            this._isDisabled = true;
             this._pieces = GameObject.Find("PlayerPieces");
         }
 
         private void Update()
         {
-            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1)) return;
+            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1) || this._isDisabled) return;
 
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             var hitInfo = Physics2D.Raycast(ray.origin, ray.direction, RAYCAST_MAX_DISTANCE);

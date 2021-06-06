@@ -16,6 +16,8 @@ namespace LaserChess.Movement
 
         public int CurrentRow => this._currentRow;
 
+        public PiecesIdsEnum Id => this._id;
+
         private void Awake()
         {
             this._grid = GameObject.Find("GridMap").GetComponent<GridMap>();

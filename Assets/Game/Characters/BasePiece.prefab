@@ -91,6 +91,7 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 0}
   _restrictProjectile: 0
   _projectileDestroyOffset: 0.15
+  _destroyTimeout: 8
 --- !u!114 &8744821897573945874
 MonoBehaviour:
   m_ObjectHideFlags: 0

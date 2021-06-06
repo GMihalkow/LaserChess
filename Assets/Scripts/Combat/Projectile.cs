@@ -30,11 +30,13 @@ namespace LaserChess.Combat
             GameObject.Destroy(this.gameObject);
         }
 
-        public void SetConfig(Vector2 target, float attackDamage, float destroyOffset, bool destroyAtPos = true)
+        public void SetConfig(Vector2 target, float attackDamage, float destroyOffset, float destroyTimeout, bool destroyAtPos = true)
         {
             this._destroyOffset = destroyOffset;
             this._destroyAtPos = destroyAtPos;
             this._attackDamage = attackDamage;
+
+            GameObject.Destroy(this.gameObject, destroyTimeout);
 
             var screenPos = Camera.main.WorldToScreenPoint(target);
             this.LookAt(screenPos);
