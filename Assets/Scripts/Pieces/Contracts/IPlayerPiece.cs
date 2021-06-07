@@ -1,4 +1,6 @@
-﻿namespace LaserChess.Pieces.Contracts
+﻿using UnityEngine;
+
+namespace LaserChess.Pieces.Contracts
 {
     public interface IPlayerPiece
     {
@@ -7,5 +9,9 @@
         void HighlightCombatSpots();
 
         void Move(int row, int col);
+
+        void Attack(Vector2 markerPos);
+
+        void Reset();
     }
 }

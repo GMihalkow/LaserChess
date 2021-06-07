@@ -1,4 +1,5 @@
-﻿using LaserChess.Movement;
+﻿using LaserChess.Combat;
+using LaserChess.Movement;
 using UnityEngine;
 
 namespace LaserChess.Pieces
@@ -7,11 +8,13 @@ namespace LaserChess.Pieces
     {
         [SerializeField] int _initialCol;
         [SerializeField] int _initialRow;
-
+        
+        protected Fighter _fighter;
         protected Mover _mover;
 
         protected virtual void Awake()
         {
+            this._fighter = this.GetComponent<Fighter>();
             this._mover = this.GetComponent<Mover>();
         }
 

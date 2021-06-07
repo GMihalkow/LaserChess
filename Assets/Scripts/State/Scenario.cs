@@ -82,6 +82,8 @@ namespace LaserChess.State
 
                         yield return new WaitUntil(() => this._projectilesContainer.transform.childCount == 0);
 
+                        yield return this.ChangeState(States.RESET);
+
                         break;
                     }
 
@@ -93,6 +95,7 @@ namespace LaserChess.State
                             break;
                         }
 
+                        this._playerController.Reset();
                         this._buttonIsClicked = false;
                         yield return this.ChangeState(States.START);
 

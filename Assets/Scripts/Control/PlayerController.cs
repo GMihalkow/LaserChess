@@ -1,5 +1,4 @@
-﻿using LaserChess.Combat;
-using LaserChess.Movement;
+﻿using LaserChess.Movement;
 using LaserChess.Pieces;
 using UnityEngine;
 
@@ -48,12 +47,21 @@ namespace LaserChess.Control
             }
         }
 
+        public void Reset()
+        {
+            foreach (var piece in this._pieces.GetComponentsInChildren<PlayerPiece>())
+            {
+                piece.Reset();
+            }
+        }
+
         private void HandlePieceCombat(Vector2 markerPos)
         {
             var piece = this.FindSelectedPiece();
             if (piece == null) return;
 
-            piece.GetComponent<Fighter>().Attack(markerPos);
+            piece.Attack(markerPos);
+            this.DestroyMarkers();
         }
 
         private void DisplayMarkers(RaycastHit2D hitInfo)

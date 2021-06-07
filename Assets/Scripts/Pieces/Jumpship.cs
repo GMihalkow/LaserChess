@@ -7,6 +7,7 @@ namespace LaserChess.Pieces
     {
         public override void HighlightCombatSpots()
         {
+            if (this._hasAttacked) return;
             this._isSelected = true;
 
             var startCol = Mathf.Max(0, this._mover.CurrentCol - 4);
@@ -34,7 +35,7 @@ namespace LaserChess.Pieces
 
         public override void HighlightMovementSpots()
         {
-            // TODO [GM]: extract code? (in Grunt too)
+            if (this._hasMoved) return;
             if (this._isSelected) return;
 
             this._isSelected = true;
