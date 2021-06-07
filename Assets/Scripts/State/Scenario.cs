@@ -53,6 +53,8 @@ namespace LaserChess.State
 
                         yield return new WaitUntil(() => this._buttonIsClicked);
 
+                        this._playerController.DestroyMarkers();
+
                         this._playerController.isDisabled = true;
 
                         yield return this.ChangeState(States.AI_TURN);

@@ -16,7 +16,7 @@ namespace LaserChess.Control
             set => this._isDisabled = value;
         }
 
-        public int PiecesCount => this._pieces.transform.childCount;
+        public int PiecesCount => this._pieces.GetComponentsInChildren<PlayerPiece>().Length;
 
         private void Awake()
         {
@@ -44,6 +44,14 @@ namespace LaserChess.Control
             else if (hitInfo.collider.CompareTag("CombatMarker") && Input.GetMouseButtonDown(0))
             {
                 this.HandlePieceCombat(hitInfo.collider.transform.position);
+            }
+        }
+
+        public void DestroyMarkers()
+        {
+            foreach (Transform child in this._pieces.transform.Find("MarkersContainer"))
+            {
+                GameObject.Destroy(child.gameObject);
             }
         }
 
@@ -94,14 +102,6 @@ namespace LaserChess.Control
 
             this.DestroyMarkers();
             this.DeselectAllPieces();
-        }
-
-        private void DestroyMarkers()
-        {
-            foreach (Transform child in this._pieces.transform.Find("MarkersContainer"))
-            {
-                GameObject.Destroy(child.gameObject);
-            }
         }
 
         private void DeselectAllPieces()
