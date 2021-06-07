@@ -10,6 +10,7 @@ namespace LaserChess.State
     public class Scenario : MonoBehaviour
     {
         [SerializeField] Button _endTurnBtn;
+        [SerializeField] GameObject _endGameScreenPrefab;
 
         private bool _buttonIsClicked;
         private GameObject _projectilesContainer;
@@ -110,8 +111,13 @@ namespace LaserChess.State
 
                 case States.END:
                     {
-                        Debug.Log("End");
-                        // TODO [GM]: Display win screen
+                        GameObject.Destroy(this._endTurnBtn.gameObject);
+
+                        var endGameScreen = GameObject.Instantiate(this._endGameScreenPrefab);
+                        var endGameText = endGameScreen.transform.GetChild(0).Find("EndGameText").GetComponent<Text>();
+
+                        endGameText.text = endGameText.text + " You " + (this._playerController.PiecesCount > 0 ? "Win" : "Lose");
+
                         break;
                     }
 

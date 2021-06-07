@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endTurnBtn: {fileID: 202785039206293759}
+  _endGameScreenPrefab: {fileID: 8111444106403274391, guid: 154c750dd1ce012418b02577d55ae9f4,
+    type: 3}
 --- !u!1 &7437875248803695649
 GameObject:
   m_ObjectHideFlags: 0
