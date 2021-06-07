@@ -29,6 +29,8 @@ namespace LaserChess.State
             {
                 if (this._playerController.isDisabled) return;
                 this._buttonIsClicked = !this._buttonIsClicked;
+
+                this.ToggleBtnColor();
             });
 
             this.StartCoroutine(this.ChangeState(States.START));
@@ -99,6 +101,8 @@ namespace LaserChess.State
 
                         this._playerController.Reset();
                         this._buttonIsClicked = false;
+                        this.ToggleBtnColor();
+
                         yield return this.ChangeState(States.START);
 
                         break;
@@ -115,5 +119,15 @@ namespace LaserChess.State
                     break;
             }
         }
+
+        private void ToggleBtnColor()
+        {
+            var btnImage = this._endTurnBtn.GetComponent<Image>();
+            var btnText = this._endTurnBtn.GetComponentInChildren<Text>();
+
+            btnImage.color = this._buttonIsClicked ? Color.black : Color.white;
+            btnText.color = this._buttonIsClicked ? Color.white : Color.black;
+        }
+
     }
 }
