@@ -4,6 +4,7 @@ using LaserChess.Movement;
 using LaserChess.Pieces;
 using LaserChess.Pieces.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LaserChess.AI
@@ -15,6 +16,8 @@ namespace LaserChess.AI
         public float DelayBetweenPieceTurns => this._delayBetweenTurns;
 
         public int PiecesCount => this._pieces.transform.childCount;
+
+        public bool DroneHasFinished => this._pieces.GetComponentsInChildren<Drone>()?.Any((d) => d.HasReachedLastRow) == true;
 
         public bool HasCommandUnit => this._pieces.GetComponentInChildren<CommandUnit>() != null;
 

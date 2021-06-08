@@ -7,6 +7,10 @@ namespace LaserChess.Pieces
 {
     public class Drone : AIPiece
     {
+        private bool _hasReachedLastRow;
+
+        public bool HasReachedLastRow => this._hasReachedLastRow;
+
         public override void Attack()
         {
             var enemy = this.FindEnemy();
@@ -22,6 +26,7 @@ namespace LaserChess.Pieces
             if (!this._grid.IsPosEmpty(row, this._mover.CurrentCol)) return;
 
             this._mover.Move(row, this._mover.CurrentCol);
+            this._hasReachedLastRow = row == 0;
         }
 
         private int[] FindEnemy()

@@ -121,7 +121,7 @@ namespace LaserChess.State
 
                 case States.RESET:
                     {
-                        if (!this._aiController.HasCommandUnit || this._playerController.PiecesCount == 0)
+                        if (!this._aiController.HasCommandUnit || this._aiController.DroneHasFinished || this._playerController.PiecesCount == 0)
                         {
                             yield return this.ChangeState(States.END);
                             break;
@@ -143,7 +143,7 @@ namespace LaserChess.State
                         var endGameScreen = GameObject.Instantiate(this._endGameScreenPrefab);
                         var endGameText = endGameScreen.transform.GetChild(0).Find("EndGameText").GetComponent<Text>();
 
-                        endGameText.text = endGameText.text + " You " + (this._playerController.PiecesCount > 0 ? "Win" : "Lose");
+                        endGameText.text = endGameText.text + " You " + (!this._aiController.HasCommandUnit ? "Win" : "Lose");
 
                         break;
                     }
