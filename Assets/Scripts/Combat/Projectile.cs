@@ -4,6 +4,8 @@ namespace LaserChess.Combat
 {
     public class Projectile : MonoBehaviour
     {
+        [SerializeField] float _speed = 5f;
+
         private float _attackDamage;
         private Vector2 _target;
         private bool _destroyAtPos;
@@ -15,11 +17,20 @@ namespace LaserChess.Combat
         {
             if (this._target == default) return;
 
-            this.transform.Translate(Vector2.right * Time.deltaTime);
+            this.transform.Translate((Vector2.right * this._speed) * Time.deltaTime);
         }
 
         private void LateUpdate()
         {
+            Vector2 screenPos = Camera.main.WorldToViewportPoint(this.transform.position);
+            var isVisible = (screenPos.x >= 0 && screenPos.y >= 0) && (screenPos.x <= 1 && screenPos.y <= 1);
+            
+            if (!isVisible)
+            {
+                GameObject.Destroy(this.gameObject);
+                return;
+            }
+
             if (!this._destroyAtPos) return;
 
             var vector2Pos = new Vector2(this.transform.position.x, this.transform.position.y);

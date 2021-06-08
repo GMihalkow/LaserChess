@@ -63,6 +63,8 @@ namespace LaserChess.State
 
                         yield return new WaitUntil(() => this._buttonIsClicked || !this._aiController.HasCommandUnit);
 
+                        yield return new WaitUntil(() => this._projectilesContainer.transform.childCount == 0);
+
                         this._playerController.DestroyMarkers();
 
                         this._playerController.isDisabled = true;
