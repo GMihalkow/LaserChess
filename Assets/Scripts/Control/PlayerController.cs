@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace LaserChess.Control
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : BaseController
     {
         private const float RAYCAST_MAX_DISTANCE = 100f;
         private bool _isDisabled;
-        private GameObject _pieces;
 
         public bool isDisabled 
         {

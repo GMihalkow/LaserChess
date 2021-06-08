@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e24586219be18d4288700cfb953571a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialCol: 3
-  _initialRow: 3
 --- !u!1001 &5282646117543241417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,6 +61,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8163009519112597263, guid: 8b2d7397866782e46b3f311657ab0730,
         type: 3}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.45342055
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.6222648
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0022857934
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.038867593
+      objectReference: {fileID: 0}
     - target: {fileID: 7917884870483100993, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
       propertyPath: m_RootOrder

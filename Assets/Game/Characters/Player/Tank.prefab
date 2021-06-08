@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d41ec753208b44a4affb53d3553f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialCol: 0
-  _initialRow: 3
   _movementMarkerPrefab: {fileID: 4875065343152697349, guid: 2bc95267116dcb646bcee70eff6ceb7e,
     type: 3}
   _combatMarkerPrefab: {fileID: 2693768021007161584, guid: 84e0e643bd8e88d4fa75d7f81d992448,
@@ -72,6 +70,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1789979337603156851, guid: 865b06fe0f7c8e64a8ba020fb365e36e,
         type: 3}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.46824178
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.011359885
+      objectReference: {fileID: 0}
     - target: {fileID: 7917884870483100993, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
       propertyPath: m_RootOrder

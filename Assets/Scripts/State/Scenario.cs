@@ -10,6 +10,7 @@ namespace LaserChess.State
 {
     public class Scenario : MonoBehaviour
     {
+        [SerializeField] float _startGameDelay;
         [SerializeField] Button _endTurnBtn;
         [SerializeField] GameObject _endGameScreenPrefab;
 
@@ -25,8 +26,11 @@ namespace LaserChess.State
             this._aiController = GameObject.Find("AIPieces").GetComponent<AIController>();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            this._endTurnBtn.interactable = false;
+            yield return new WaitForSeconds(3f);
+
             this._endTurnBtn.onClick.AddListener(() =>
             {
                 if (this._playerController.isDisabled) return;
@@ -34,6 +38,8 @@ namespace LaserChess.State
 
                 this.ToggleBtnColor();
             });
+
+            this._endTurnBtn.interactable = true;
 
             this.StartCoroutine(this.ChangeState(States.START));
         }
@@ -55,13 +61,20 @@ namespace LaserChess.State
                     {
                         this._playerController.isDisabled = false;
 
-                        yield return new WaitUntil(() => this._buttonIsClicked);
+                        yield return new WaitUntil(() => this._buttonIsClicked || !this._aiController.HasCommandUnit);
 
                         this._playerController.DestroyMarkers();
 
                         this._playerController.isDisabled = true;
 
-                        yield return this.ChangeState(States.AI_TURN);
+                        if (!this._aiController.HasCommandUnit)
+                        {
+                            yield return this.ChangeState(States.END);
+                        }
+                        else
+                        {
+                            yield return this.ChangeState(States.AI_TURN);
+                        }
 
                         break;
                     }
@@ -95,7 +108,7 @@ namespace LaserChess.State
 
                 case States.RESET:
                     {
-                        if (this._aiController.PiecesCount == 0 || this._playerController.PiecesCount == 0)
+                        if (!this._aiController.HasCommandUnit || this._playerController.PiecesCount == 0)
                         {
                             yield return this.ChangeState(States.END);
                             break;

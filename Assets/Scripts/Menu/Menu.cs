@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using LaserChess.Core.Enums;
+using LaserChess.Level;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,7 +19,8 @@ namespace LaserChess.Menu
         {
             if (this._difficultyDropdown.value == DEFAULT_DROPDOWN_INDEX) return;
 
-            SceneManager.LoadSceneAsync(this._difficultyDropdown.value, LoadSceneMode.Single);
+            DifficultyManager.Difficulty = (DifficultiesEnum)this._difficultyDropdown.value;
+            SceneManager.LoadSceneAsync("PlayScene", LoadSceneMode.Single);
         }
 
         public void Exit()

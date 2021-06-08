@@ -1,4 +1,5 @@
-﻿using LaserChess.Core.Enums;
+﻿using LaserChess.Control;
+using LaserChess.Core.Enums;
 using LaserChess.Movement;
 using LaserChess.Pieces;
 using LaserChess.Pieces.Contracts;
@@ -7,15 +8,15 @@ using UnityEngine;
 
 namespace LaserChess.AI
 {
-    public class AIController : MonoBehaviour
+    public class AIController : BaseController
     {
         [SerializeField] float _delayBetweenTurns = 1f;
-
-        private GameObject _pieces;
 
         public float DelayBetweenPieceTurns => this._delayBetweenTurns;
 
         public int PiecesCount => this._pieces.transform.childCount;
+
+        public bool HasCommandUnit => this._pieces.GetComponentInChildren<CommandUnit>() != null;
 
         private void Awake()
         {

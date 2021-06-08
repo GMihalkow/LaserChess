@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8338106fd1045a648b1a4e407cdc9e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialCol: 4
-  _initialRow: 4
 --- !u!1001 &1593910415684000355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,6 +65,26 @@ PrefabInstance:
         type: 3}
       propertyPath: _restrictProjectile
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.47703364
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.6502311
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.008292899
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374265978624959287, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.024884433
       objectReference: {fileID: 0}
     - target: {fileID: 7917884870483100993, guid: e725299de5894294480f0624feb16ed9,
         type: 3}

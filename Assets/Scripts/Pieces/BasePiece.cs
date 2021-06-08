@@ -6,9 +6,6 @@ namespace LaserChess.Pieces
 {
     public abstract class BasePiece : MonoBehaviour
     {
-        [SerializeField] int _initialCol;
-        [SerializeField] int _initialRow;
-        
         protected Fighter _fighter;
         protected Mover _mover;
 
@@ -18,9 +15,9 @@ namespace LaserChess.Pieces
             this._mover = this.GetComponent<Mover>();
         }
 
-        private void Start()
+        public void SetupPosition(int row, int col)
         {
-            this._mover.Move(this._initialRow, this._initialCol);
+            this._mover.Move(row, col);
         }
     }
 }
