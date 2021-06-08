@@ -58,8 +58,8 @@ namespace LaserChess.Pieces
                 }
 
                 var firstAttempt = this._grid.IsPosEmpty(nextRow, nextCol);
-                var secondAttempt = this._grid.IsPosEmpty(nextRow + rowIncrement, currentCol + colIncrement);
-                var thirdAttempt = this._grid.IsPosEmpty(currentRow - rowIncrement, nextCol - colIncrement);
+                var secondAttempt = this._grid.IsPosEmpty(Mathf.Min(this._grid.Rows - 1, nextRow + rowIncrement), Mathf.Min(this._grid.Rows - 1, currentCol + colIncrement));
+                var thirdAttempt = this._grid.IsPosEmpty(Mathf.Max(0, currentRow - rowIncrement), Mathf.Max(0, nextCol - colIncrement));
 
                 if (firstAttempt)
                 {

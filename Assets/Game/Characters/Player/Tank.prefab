@@ -66,6 +66,12 @@ PrefabInstance:
       propertyPath: _attackDamage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5855803376363067694, guid: e725299de5894294480f0624feb16ed9,
+        type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 1789979337603156851, guid: 865b06fe0f7c8e64a8ba020fb365e36e,
+        type: 3}
     - target: {fileID: 7917884870483100993, guid: e725299de5894294480f0624feb16ed9,
         type: 3}
       propertyPath: m_RootOrder
