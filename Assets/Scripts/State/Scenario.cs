@@ -10,8 +10,9 @@ namespace LaserChess.State
 {
     public class Scenario : MonoBehaviour
     {
-        [SerializeField] float _startGameDelay;
+        [SerializeField] float _startGameDelay = 1f;
         [SerializeField] Button _endTurnBtn;
+        [SerializeField] Button _backBtn;
         [SerializeField] GameObject _endGameScreenPrefab;
 
         private bool _buttonIsClicked;
@@ -26,10 +27,19 @@ namespace LaserChess.State
             this._aiController = GameObject.Find("AIPieces").GetComponent<AIController>();
         }
 
+        /// <summary>
+        /// Called from editor
+        /// </summary>
+        public void Back()
+        {
+            SceneManager.LoadSceneAsync("MenuScene", LoadSceneMode.Single);
+        }
+
         private IEnumerator Start()
         {
             this._endTurnBtn.interactable = false;
-            yield return new WaitForSeconds(3f);
+            this._backBtn.interactable = false;
+            yield return new WaitForSeconds(this._startGameDelay);
 
             this._endTurnBtn.onClick.AddListener(() =>
             {
@@ -39,6 +49,7 @@ namespace LaserChess.State
                 this.ToggleBtnColor();
             });
 
+            this._backBtn.interactable = true;
             this._endTurnBtn.interactable = true;
 
             this.StartCoroutine(this.ChangeState(States.START));
@@ -131,9 +142,7 @@ namespace LaserChess.State
 
                         var endGameScreen = GameObject.Instantiate(this._endGameScreenPrefab);
                         var endGameText = endGameScreen.transform.GetChild(0).Find("EndGameText").GetComponent<Text>();
-                        var endGameBtn = endGameScreen.transform.GetChild(0).Find("ExitGameBtn").GetComponentInChildren<Button>();
 
-                        endGameBtn.onClick.AddListener(() => SceneManager.LoadSceneAsync(0, LoadSceneMode.Single));
                         endGameText.text = endGameText.text + " You " + (this._playerController.PiecesCount > 0 ? "Win" : "Lose");
 
                         break;
@@ -152,6 +161,5 @@ namespace LaserChess.State
             btnImage.color = this._buttonIsClicked ? Color.black : Color.white;
             btnText.color = this._buttonIsClicked ? Color.white : Color.black;
         }
-
     }
 }

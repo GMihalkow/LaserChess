@@ -557,6 +557,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4068770152051992984, guid: c4a6f8f5d8a18f943b589ceccdd97445,
+        type: 3}
+      propertyPath: _startGameDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6063459364863007852, guid: c4a6f8f5d8a18f943b589ceccdd97445,
         type: 3}
       propertyPath: orthographic size
