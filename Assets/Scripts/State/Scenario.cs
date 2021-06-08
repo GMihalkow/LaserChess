@@ -3,6 +3,7 @@ using LaserChess.Control;
 using LaserChess.Core.Enums;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LaserChess.State
@@ -115,7 +116,9 @@ namespace LaserChess.State
 
                         var endGameScreen = GameObject.Instantiate(this._endGameScreenPrefab);
                         var endGameText = endGameScreen.transform.GetChild(0).Find("EndGameText").GetComponent<Text>();
+                        var endGameBtn = endGameScreen.transform.GetChild(0).Find("ExitGameBtn").GetComponentInChildren<Button>();
 
+                        endGameBtn.onClick.AddListener(() => SceneManager.LoadSceneAsync(0, LoadSceneMode.Single));
                         endGameText.text = endGameText.text + " You " + (this._playerController.PiecesCount > 0 ? "Win" : "Lose");
 
                         break;
